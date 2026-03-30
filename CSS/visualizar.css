@@ -1,0 +1,234 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Raleway:wght@300;400;500;600&display=swap');
+
+:root {
+    --bg-deep:       #1a1a1a;
+    --bg-card:       #2c2c2c;
+    --bg-input:      #333333;
+
+    --beige-light:   #d4c4a0;
+    --beige-mid:     #b8a882;
+    --beige-dark:    #8a7d62;
+
+    --text-primary:  #e8dfc8;
+    --text-secondary:#a89878;
+    --text-muted:    #6b6055;
+
+    --border-subtle: rgba(180, 160, 120, 0.15);
+    --border-focus:  rgba(180, 160, 120, 0.5);
+
+    --radius: 8px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Raleway', sans-serif;
+    background-color: var(--bg-deep);
+    color: var(--text-primary);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 40px 20px;
+}
+
+/* ── Logo ── */
+.site-logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 32px;
+}
+
+.site-logo img {
+    height: 120px;
+    width: auto;
+}
+
+.site-logo .logo-sub {
+    font-size: 10px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--beige-light);
+}
+
+/* ── Layout ── */
+.main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    max-width: 420px;
+}
+
+/* ── Card ── */
+.form-container {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: 14px;
+    padding: 40px 36px;
+    width: 100%;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.5);
+    position: relative;
+}
+
+/* Linha decorativa no topo */
+.form-container::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    border-radius: 14px 14px 0 0;
+    background: linear-gradient(90deg, transparent, var(--beige-dark), transparent);
+}
+
+/* ── Título ── */
+.form-container h2 {
+    font-family: 'Cinzel', serif;
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--beige-light);
+    text-align: center;
+    margin-bottom: 28px;
+}
+
+/* ── Label ── */
+.form-container label {
+    display: block;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-secondary);
+    margin-bottom: 6px;
+    font-weight: 600;
+}
+
+/* ── Input de busca ── */
+.form-container input {
+    width: 100%;
+    padding: 12px 14px;
+    margin-bottom: 20px;
+    background: var(--bg-input);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius);
+    color: var(--text-primary);
+    font-family: 'Raleway', sans-serif;
+    font-size: 14px;
+    outline: none;
+    transition: border-color 0.2s, box-shadow 0.2s;
+}
+
+.form-container input::placeholder {
+    color: var(--text-muted);
+}
+
+.form-container input:focus {
+    border-color: var(--border-focus);
+    box-shadow: 0 0 0 3px rgba(180, 160, 120, 0.08);
+}
+
+/* ── Botões ── */
+.form-container button {
+    width: 100%;
+    padding: 13px;
+    margin-top: 4px;
+    margin-bottom: 10px;
+    border: none;
+    border-radius: var(--radius);
+    font-family: 'Cinzel', serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, var(--beige-dark), var(--beige-mid));
+    color: #1a1a1a;
+}
+
+.btn-primary:hover {
+    background: linear-gradient(135deg, var(--beige-mid), var(--beige-light));
+    transform: translateY(-1px);
+    box-shadow: 0 4px 14px rgba(180, 160, 120, 0.2);
+}
+
+.btn-secondary {
+    background: transparent;
+    color: var(--text-secondary);
+    border: 1px solid var(--border-subtle);
+}
+
+.btn-secondary:hover {
+    border-color: var(--border-focus);
+    color: var(--beige-light);
+}
+
+/* ── Divisor ── */
+.divisor {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin: 8px 0 16px;
+    color: var(--text-muted);
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+}
+
+.divisor::before,
+.divisor::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: var(--border-subtle);
+}
+
+/* ── Card de resultado ── */
+.result-card {
+    margin-top: 24px;
+    padding: 20px;
+    background: #242424;
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius);
+}
+
+.result-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 9px 0;
+    border-bottom: 1px solid var(--border-subtle);
+    font-size: 13px;
+}
+
+.result-row:last-child {
+    border-bottom: none;
+}
+
+.result-label {
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+    font-weight: 600;
+}
+
+.result-value {
+    color: var(--text-primary);
+    font-weight: 500;
+}
+
+@media (max-width: 480px) {
+    .form-container {
+        padding: 28px 20px;
+    }
+}

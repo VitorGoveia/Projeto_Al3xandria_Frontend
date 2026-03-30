@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Al3xandria — Visualizar Dados</title>
+    <link rel="stylesheet" href="../CSS/visualizar.css">
+    <script src="../JavaScript/script.js"></script>
+</head>
+<body>
+
+    <main class="main-container">
+
+        <!-- Logo -->
+        <div class="site-logo">
+            <img src="../assets/logo.png" alt="Al3xandria">
+            <div class="logo-title">Al3xandria</div>
+            <div class="logo-sub">Biblioteca de Jogos</div>
+        </div>
+
+        <aside>
+            <div class="form-container">
+                <h2>Visualizar Dados</h2>
+
+                <label for="id">ID</label>
+                <input type="number" required id="id" placeholder="Digite um ID">
+
+                <label for="user-name">Nome</label>
+                <input type="text" readonly id="user-name">
+
+                <label for="user-email">E-mail</label>
+                <input type="text" readonly id="user-email">
+
+                <label for="user-phone">Celular</label>
+                <input type="tel" readonly id="user-phone">
+
+                <label for="user-documento">CPF / CNPJ</label>
+                <input type="text" readonly id="user-documento">
+
+                <button type="button" id="botao-criar-conta" class="btn-primary" onclick="getDados()">Ver Dados</button>
+
+                <div class="divisor">ou</div>
+
+                <button type="button" class="btn-secondary" onclick="window.location.href='cadastro.html'">← Voltar ao Cadastro</button>
+            </div>
+        </aside>
+
+    </main>
+
+</body>
+</html>
