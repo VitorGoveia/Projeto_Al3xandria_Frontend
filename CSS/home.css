@@ -1,0 +1,216 @@
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Raleway:wght@300;400;500;600&display=swap');
+
+:root {
+    --bg-deep:       #1a1a1a;
+    --bg-card:       #2c2c2c;
+    --bg-input:      #333333;
+    --beige-light:   #d4c4a0;
+    --beige-mid:     #b8a882;
+    --beige-dark:    #8a7d62;
+    --text-primary:  #e8dfc8;
+    --text-secondary:#a89878;
+    --text-muted:    #6b6055;
+    --border-subtle: rgba(180, 160, 120, 0.15);
+    --border-focus:  rgba(180, 160, 120, 0.5);
+    --radius: 8px;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: 'Raleway', sans-serif;
+    background-color: var(--bg-deep);
+    color: var(--text-primary);
+    min-height: 100vh;
+}
+
+.cinzel-title {
+    font-family: 'Cinzel', serif;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--beige-light);
+}
+
+/* ── Navbar ── */
+.navbar {
+    background: #121212;
+    border-bottom: 1px solid var(--border-subtle);
+    padding: 15px 40px;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.header-content {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.site-logo-small {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.site-logo-small img {
+    height: 40px;
+}
+
+.site-logo-small span {
+    font-family: 'Cinzel', serif;
+    font-size: 18px;
+    color: var(--beige-light);
+}
+
+.nav-links a {
+    color: var(--text-secondary);
+    text-decoration: none;
+    margin: 0 15px;
+    font-size: 13px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover, .nav-links a.active {
+    color: var(--beige-light);
+}
+
+/* ── Container Principal ── */
+.home-container {
+    max-width: 1200px;
+    margin: 30px auto;
+    padding: 0 20px;
+}
+
+/* ── Destaque ── */
+.featured-section {
+    height: 350px;
+    background: linear-gradient(to right, rgba(26,26,26,0.9), transparent), url('https://via.placeholder.com/1200x400');
+    background-size: cover;
+    background-position: center;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    padding: 40px;
+    margin-bottom: 40px;
+    border: 1px solid var(--border-subtle);
+}
+
+.featured-badge {
+    color: var(--beige-mid);
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    margin-bottom: 10px;
+}
+
+.featured-section p {
+    margin: 15px 0 25px;
+    color: var(--text-secondary);
+    max-width: 400px;
+}
+
+/* ── Grade de Jogos ── */
+.section-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 25px;
+}
+
+.filter-bar input {
+    background: var(--bg-input);
+    border: 1px solid var(--border-subtle);
+    padding: 10px 15px;
+    border-radius: var(--radius);
+    color: var(--text-primary);
+    width: 250px;
+}
+
+.game-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 25px;
+}
+
+.game-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-subtle);
+    border-radius: var(--radius);
+    overflow: hidden;
+    transition: transform 0.3s, border-color 0.3s;
+    cursor: pointer;
+}
+
+.game-card:hover {
+    transform: translateY(-5px);
+    border-color: var(--border-focus);
+}
+
+.game-cover {
+    height: 260px;
+    background-size: cover;
+    background-position: center;
+}
+
+.game-info {
+    padding: 15px;
+}
+
+.game-info h3 {
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: var(--beige-light);
+}
+
+.game-genre {
+    font-size: 11px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+}
+
+/* ── Botões ── */
+.btn-primary-small {
+    padding: 10px 20px;
+    background: linear-gradient(135deg, var(--beige-dark), var(--beige-mid));
+    border: none;
+    border-radius: var(--radius);
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    cursor: pointer;
+    font-weight: 600;
+}
+
+.btn-logout {
+    background: transparent;
+    border: 1px solid var(--border-subtle);
+    color: var(--text-secondary);
+    padding: 8px 16px;
+    border-radius: var(--radius);
+    cursor: pointer;
+    font-size: 12px;
+}
+
+.btn-logout:hover {
+    border-color: var(--beige-dark);
+    color: var(--beige-light);
+}
+
+@media (max-width: 768px) {
+    .header-content {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .game-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+}

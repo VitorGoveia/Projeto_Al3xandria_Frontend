@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Al3xandria</title>
+    <link rel="shortcut icon" href="../Imagens/Favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="../CSS/login.css">
+    <script src="../JavaScript/script.js" defer></script>
+</head>
+<body>
+
+    <main class="main-container">
+
+        <div class="site-logo">
+            <img src="../Imagens/logo.png" alt="Al3xandria">
+            <div class="logo-sub">Biblioteca de Jogos</div>
+        </div>
+
+        <div class="form-container">
+            <h2>Entrar</h2>
+
+            <form id="form-login">
+
+                <label for="login-email">E-mail</label>
+                <input type="email" id="login-email" placeholder="seu@email.com" required>
+
+                <label for="login-senha">Senha</label>
+                <input type="password" id="login-senha" placeholder="Sua senha" required>
+
+                <button type="button" class="btn-primary" onclick="alert('Função de login em desenvolvimento!')">
+                    Entrar
+                </button>
+                
+                <div class="divisor">ou</div>
+
+                <button type="button" class="btn-secondary" onclick="window.location.href='cadastro.html'">
+                    Criar Conta
+                </button>
+
+            </form>
+        </div>
+
+    </main>
+
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Al3xandria</title>
+    <link rel="shortcut icon" href="../Imagens/Favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="../CSS/home.css">
+    <script src="../JavaScript/script.js" defer></script>
+</head>
+<body>
+
+    <header class="navbar">
+        <div class="header-content">
+            <div class="site-logo-small">
+                <img src="../Imagens/logo.png" alt="Al3xandria">
+                <span>Al3xandria</span>
+            </div>
+            
+            <nav class="nav-links">
+                <a href="#" class="active">Biblioteca</a>
+                <a href="#">Explorar</a>
+                <a href="#">Favoritos</a>
+            </nav>
+
+            <div class="user-profile">
+                <button class="btn-logout" onclick="window.location.href='login.html'">Sair</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="home-container">
+        
+        <section class="featured-section">
+            <div class="featured-overlay">
+                <div class="featured-badge">Destaque da Semana</div>
+                <h1 class="cinzel-title">Elden Ring</h1>
+                <p>Explore as Terras Intermédias e torne-se o próximo Lorde Prístino.</p>
+                <button class="btn-primary-small">Ver Detalhes</button>
+            </div>
+        </section>
+
+        <section class="library-section">
+            <div class="section-header">
+                <h2 class="cinzel-title">Sua Coleção</h2>
+                <div class="filter-bar">
+                    <input type="text" placeholder="Buscar na biblioteca..." id="search-input">
+                </div>
+            </div>
+
+            <div class="game-grid">
+                <div class="game-card">
+                    <div class="game-cover" style="background-image: url('https://via.placeholder.com/200x280')"></div>
+                    <div class="game-info">
+                        <h3>God of War</h3>
+                        <span class="game-genre">Ação / RPG</span>
+                    </div>
+                </div>
+
+                <div class="game-card">
+                    <div class="game-cover" style="background-image: url('https://via.placeholder.com/200x280')"></div>
+                    <div class="game-info">
+                        <h3>Cyberpunk 2077</h3>
+                        <span class="game-genre">Ficção Científica</span>
+                    </div>
+                </div>
+
+                <div class="game-card">
+                    <div class="game-cover" style="background-image: url('https://via.placeholder.com/200x280')"></div>
+                    <div class="game-info">
+                        <h3>Hades</h3>
+                        <span class="game-genre">Roguelike</span>
+                    </div>
+                </div>
+
+                <div class="game-card">
+                    <div class="game-cover" style="background-image: url('https://via.placeholder.com/200x280')"></div>
+                    <div class="game-info">
+                        <h3>The Witcher 3</h3>
+                        <span class="game-genre">Fantasia</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+</body>
+</html>
