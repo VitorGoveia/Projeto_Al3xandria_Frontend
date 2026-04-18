@@ -1,0 +1,89 @@
+/* Configurações Gerais */
+body {
+    background-color: #0b0e14; /* Escuro profundo */
+    color: #e0e0e0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
+}
+
+/* Container do Card */
+.game-card {
+    background-color: #1a1f26;
+    max-width: 800px;
+    width: 100%;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    border: 1px solid #333;
+}
+
+/* Imagem de Destaque */
+.game-img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-bottom: 4px solid #7159c1; /* Roxo gamer */
+}
+
+/* Conteúdo */
+.game-content {
+    padding: 30px;
+}
+
+.game-title {
+    font-size: 2.5rem;
+    margin: 0 0 15px 0;
+    color: #fff;
+}
+
+/* Badges (Score e Data) */
+.game-info {
+    display: flex;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.badge {
+    padding: 8px 15px;
+    border-radius: 20px;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+
+.score { background-color: #46d369; color: #000; }
+.date { background-color: #333; color: #fff; }
+
+/* Descrição */
+.game-description h3 {
+    color: #7159c1;
+    margin-bottom: 10px;
+}
+
+.game-description p {
+    line-height: 1.6;
+    color: #b0b0b0;
+}
+
+/* Botão */
+.game-footer {
+    margin-top: 30px;
+}
+
+.btn-website {
+    display: inline-block;
+    background-color: #7159c1;
+    color: white;
+    padding: 12px 25px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.btn-website:hover {
+    background-color: #5a44a3;
+    transform: translateY(-2px);
+}
