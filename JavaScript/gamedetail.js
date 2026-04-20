@@ -1,4 +1,9 @@
 const URL_BASE = 'http://127.0.0.1:5001'
+const modal = document.getElementById('modal-avaliacao');
+
+function come_back(){
+    window.location.href = "../VIEW/searchgames.html";
+}
 
 document.addEventListener('DOMContentLoaded', () =>{
     const description = localStorage.getItem("description");
@@ -34,8 +39,35 @@ document.addEventListener('DOMContentLoaded', () =>{
 
                 <div class="game-footer">
                     <a href="${website}" target="_blank" class="btn-website">Visitar Site Oficial</a>
+                    <a onclick="salvar_jogo()" class="btn-website">Adicionar à Biblioteca</a>
                 </div>
             </div>
         </div>
     `;
 });
+
+
+async function salvar_jogo(){
+    modal.showModal();
+     
+
+}
+
+
+
+function fecharModal() {
+    modal.close(); // Fecha a janelinha
+}
+
+function salvarAvaliacao() {
+    const nota = document.querySelector('input[name="star"]:checked')?.value;
+    
+    if (nota) {
+        console.log("Jogo avaliado com nota:", nota);
+        // Aqui você faria a lógica para salvar no seu banco ou localStorage
+        fecharModal();
+        alert(`Jogo adicionado com nota ${nota}!`);
+    } else {
+        alert("Por favor, selecione uma nota.");
+    }
+}

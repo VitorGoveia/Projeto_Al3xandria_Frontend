@@ -1,11 +1,11 @@
 const URL_BASE = 'http://127.0.0.1:5001'
 
-async function performSearch() {
-    const typed_game = document.getElementById("gameSearch").value;
-    console.log(typed_game)
 
-
-    let url = `${URL_BASE}/slug_game/${typed_game}`
+document.addEventListener('DOMContentLoaded', async () =>{
+    let game_search = localStorage.getItem("typed_game");
+    
+    if(game_search && game_search.trim() !== ""){
+        let url = `${URL_BASE}/slug_game/${game_search}`
     let api = await fetch(url, {
         method: 'GET'
     })
@@ -24,6 +24,44 @@ async function performSearch() {
                 <h3 class="game-title">${jogo.name}</h3>
             </button>
         </div>
+        `;
+        
+    }).join(''); // O .join('') junta todos os blocos em um grande texto HTML
+
+    // Insere os blocos criados dentro da div no HTML
+    container.innerHTML = htmlDosJogos;
+        
+    }
+    }
+
+
+
+});
+
+async function performSearch() {
+    const typed_game = document.getElementById("gameSearch").value;
+    localStorage.setItem("typed_game", typed_game)
+    const container = document.getElementById('game-results');
+    container.innerHTML = "";
+
+    let url = `${URL_BASE}/slug_game/${typed_game}`
+    let api = await fetch(url, {
+        method: 'GET'
+    })
+
+    if(api.ok){
+        let response = await api.json()
+        
+
+        const htmlDosJogos = response.map((jogo, index) => {
+        let slug_name = jogo.slug_name;
+        return `
+        <button class="card-button" onclick="viewDetails('${slug_name}')">
+            <div class="game-card" id="card-${index}">
+                <img src="${jogo.capa}" alt="Capa de ${jogo.name}" class="game-image">
+                <h3 class="game-title">${jogo.name}</h3>     
+            </div>
+        </button>
         `;
         
     }).join(''); // O .join('') junta todos os blocos em um grande texto HTML
@@ -70,4 +108,8 @@ async function viewDetails(slug_name){
         alert("Something wrong! Try again")
     }
 
+}
+
+function come_back(){
+    window.location.href = "../VIEW/home.html"
 }

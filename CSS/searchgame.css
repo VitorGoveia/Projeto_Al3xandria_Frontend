@@ -37,14 +37,14 @@ body {
 
 #gameSearch:focus {
     outline: none;
-    border-color: #7149e4; /* Roxo Alexandria */
+    border-color: rgba(180, 160, 120, 0.5); /* Roxo Alexandria */
 }
 
 #pesquisa {
     padding: 12px 25px;
     border-radius: 8px;
     border: none;
-    background-color: #7149e4;
+    background-color: rgba(180, 160, 120, 0.5);
     color: white;
     font-weight: bold;
     cursor: pointer;
@@ -52,7 +52,7 @@ body {
 }
 
 #pesquisa:hover {
-    background-color: #5a36c4;
+    background-color: rgba(180, 160, 120, 0.5);
     transform: translateY(-2px);
 }
 
@@ -86,7 +86,7 @@ body {
 /* Efeito ao passar o mouse por cima do jogo */
 .game-card:hover {
     transform: translateY(-8px);
-    border-color: #7149e4; /* Roxo padrão do Alexandria */
+    border-color: rgba(180, 160, 120, 0.5); /* Roxo padrão do Alexandria */
 }
 
 /* Estilo da Imagem da Capa */
@@ -110,7 +110,7 @@ body {
 
 .card-button {
     background-color: #121212;
-    color: #5a36c4;
+    color: rgba(180, 160, 120, 0.5);
 
 }
 
@@ -120,4 +120,43 @@ body {
     text-align: center;
     color: #888;
     margin-top: 20px;
+}
+
+#buttom-come-back {
+    position: fixed; /* Fixa o elemento em relação à tela (viewport) */
+    left: 20px;      /* Distância da borda esquerda */
+    transform: translateY(-50%); /* Ajuste fino para o centro exato */
+    
+    z-index: 1000;   /* Garante que ele fique acima de outros elementos */
+    
+    /* Estilização para parecer um botão flutuante */
+    padding: 10px 15px;
+    background-color: #333;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+    transition: all 0.3s ease;
+}
+
+#buttom-come-back:hover {
+    background-color: #555;
+    left: 25px; /* Efeito de leve movimento ao passar o mouse */
+}
+
+/* Responsividade: Celulares pequenos */
+@media (max-width: 768px) {
+    #buttom-come-back {
+        position: static;    /* No mobile, ele volta para o fluxo normal */
+        transform: none;     /* Remove a centralização vertical */
+        display: block;      /* Faz ele ocupar a linha toda ou agir como bloco */
+        margin: 10px auto;   /* Centraliza horizontalmente */
+        width: 90%;          /* Largura quase total no celular */
+        text-align: center;
+    }
+    
+    .search-container {
+        margin-top: 20px;
+    }
 }

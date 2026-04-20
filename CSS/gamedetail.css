@@ -25,7 +25,7 @@ body {
     width: 100%;
     height: 400px;
     object-fit: cover;
-    border-bottom: 4px solid #7159c1; /* Roxo gamer */
+    border-bottom: 4px solid rgba(180, 160, 120, 0.5); /* Roxo gamer */
 }
 
 /* Conteúdo */
@@ -58,7 +58,7 @@ body {
 
 /* Descrição */
 .game-description h3 {
-    color: #7159c1;
+    color: rgba(180, 160, 120, 0.5);
     margin-bottom: 10px;
 }
 
@@ -74,7 +74,7 @@ body {
 
 .btn-website {
     display: inline-block;
-    background-color: #7159c1;
+    background-color: rgba(180, 160, 120, 0.5);
     color: white;
     padding: 12px 25px;
     text-decoration: none;
@@ -84,6 +84,86 @@ body {
 }
 
 .btn-website:hover {
-    background-color: #5a44a3;
+    background-color: rgba(180, 160, 120, 0.5);
     transform: translateY(-2px);
 }
+
+
+#come-back {
+    position: fixed; /* Fixa na tela, independente do scroll */
+    top: 40px;       /* Alinha com o topo do seu card de jogo */
+    left: 40px;      /* Joga para o canto esquerdo da tela */
+    z-index: 1000;   /* Garante que fique em cima de tudo */
+}
+
+/* O botão em si */
+#button-come-back {
+    background-color: #1a1f26; /* Mesmo fundo do card */
+    color: rgba(180, 160, 120, 0.5);            /* Roxo gamer */
+    border: 2px solid rgba(180, 160, 120, 0.5);
+    padding: 12px 20px;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+/* Efeito de Hover (Passar o mouse) */
+#button-come-back:hover {
+    background-color: rgba(180, 160, 120, 0.5);
+    color: white;
+    box-shadow: 0 0 15px rgba(180, 160, 120, 0.5);
+    transform: translateX(-5px); /* Dá um leve pulinho para o lado */
+}
+
+/* Ajuste para telas pequenas (Mobile) */
+@media (max-width: 1100px) {
+    #come-back {
+        position: relative; /* No celular, ele volta para cima do container */
+        top: 0;
+        left: 0;
+        margin-bottom: 20px;
+        display: flex;
+        justify-content: center;
+    }
+}
+
+
+/* Estilo do Modal */
+dialog {
+    border: none;
+    border-radius: 12px;
+    padding: 20px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+    width: 300px;
+    background: #222;
+    color: white;
+    text-align: center;
+}
+
+/* Escurecer o fundo */
+dialog::backdrop {
+    background: rgba(0, 0, 0, 0.7);
+}
+
+/* Estrela de avaliação (simples) */
+.stars {
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: center;
+    font-size: 30px;
+    margin: 15px 0;
+}
+
+.stars input { display: none; }
+.stars label { color: #444; cursor: pointer; transition: 0.2s; }
+.stars input:checked ~ label,
+.stars label:hover,
+.stars label:hover ~ label { color: #f1c40f; }
+
+.modal-actions { display: flex; justify-content: space-around; margin-top: 20px; }

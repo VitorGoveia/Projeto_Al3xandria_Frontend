@@ -3,11 +3,34 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Al3xandria Game Details</title>
+    <title>Game Details - Al3xandria</title>
+    <link rel="shortcut icon" href="../Imagens/Favicon.png" type="image/x-icon">
     <script src="../JavaScript/gamedetail.js" defer></script>
     <link rel="stylesheet" href="../CSS/gamedetail.css">
 </head>
 <body>
+    <dialog id="modal-avaliacao">
+    <div class="modal-content">
+        <h3>Avalie o Jogo</h3>
+        <p>Como foi sua experiência?</p>
+        
+        <div class="stars">
+            <input type="radio" name="star" id="star5" value="5"><label for="star5">★</label>
+            <input type="radio" name="star" id="star4" value="4"><label for="star4">★</label>
+            <input type="radio" name="star" id="star3" value="3"><label for="star3">★</label>
+            <input type="radio" name="star" id="star2" value="2"><label for="star2">★</label>
+            <input type="radio" name="star" id="star1" value="1"><label for="star1">★</label>
+        </div>
+
+        <div class="modal-actions">
+            <button onclick="fecharModal()" class="btn-cancelar">Cancelar</button>
+            <button onclick="salvarAvaliacao()" class="btn-confirmar">Salvar</button>
+        </div>
+    </div>
+</dialog>
+    <div id="come-back">
+        <buttom id="buttom-come-back" onclick="come_back()">← Voltar</buttom>
+    </div>
     <div id="game-container">
     </div>
 </body>
