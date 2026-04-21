@@ -40,7 +40,7 @@ async function postData(){
         console.log(data);
         alert('Cadastro realizado com sucesso!')
         document.getElementById("form-cadastro").reset();
-        console.log("Resposta API:", data);
+        window.location.href = 'login.html';
     } else {
         let errorApi = await api.json();
         let erro = errorApi.data.erro;

@@ -92,7 +92,6 @@ body {
 
 /* ── Destaque ── */
 .featured-section {
-    height: 350px;
     background: linear-gradient(to right, rgba(26,26,26,0.9), transparent), url('https://via.placeholder.com/1200x400');
     background-size: cover;
     background-position: center;
@@ -175,6 +174,27 @@ body {
     font-size: 11px;
     color: var(--text-muted);
     text-transform: uppercase;
+}
+
+.game-release-date {
+    font-size: 11px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+}
+
+.game-meta-score {
+    font-size: 11px;
+    color: var(--text-muted);
+    text-transform: uppercase;
+}
+
+.game-value {
+    color:#e8dfc8;
+    
+}
+
+#msg-error {
+    color:#e8dfc8
 }
 
 /* ── Botões ── */

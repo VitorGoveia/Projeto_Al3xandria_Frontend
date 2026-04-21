@@ -48,3 +48,64 @@ document.addEventListener('DOMContentLoaded', function () {
         btnSair.addEventListener('click', logout);
     }
 });
+
+
+
+document.addEventListener('DOMContentLoaded', async function () {
+    const conteiner_game = document.getElementById("game_section");
+    const user_id = getUserId();
+    let get_games_url = `${API_BASE_URL}/usergame/${user_id}`;
+
+    let api_games = await fetch(get_games_url, {
+        method: "GET",
+        headers: {
+               "Content-Type": "application/json"
+            }
+    });
+
+    if(api_games.ok){
+        let games_response = await api_games.json();
+        console.log(games_response)
+        if(games_response.length > 0) {
+        conteiner_game.innerHTML = ""
+
+        const game_array = games_response.map(game => 
+            `
+            <div class="game-card">
+                <div class="game-cover" style="background-image: url('${game.image}')"></div>
+                <div class="game-info">
+                    <h3>${game.name}</h3>
+                    <p class="game-release-date">Lançado em: <span class=game-value>${game.release_date}</span></p>
+                    <p class="game-meta-score">Meta Score: <span class=game-value>${game.meta_score}</span></p>
+                    <p class="game-meta-score">Sua Avaliação: <span class=game-value>${game.user_rate}/5</span></p>
+                    <p class="game-genre">${game.description}</p>
+                </div>
+            </div>
+        `);
+
+        conteiner_game.innerHTML = game_array.join('');
+        
+        const destaque = document.getElementById("week-main");
+        const indiceAleatorio = Math.floor(Math.random() * games_response.length);
+        const jogoSorteado = games_response[indiceAleatorio];
+        destaque.innerHTML = `
+            <div class="featured-text">
+                <h1 class="cinzel-title">${jogoSorteado.name}</h1>
+                <span class="game-genre">${jogoSorteado.description}</span>
+                <p>Meta Score: ${jogoSorteado.meta_score}</p>
+                <p>Sua Avaliação: ${jogoSorteado.user_rate}/5</p>
+            </div>
+            <div class="featured-image-container">
+                <img class="game-cover" src="${jogoSorteado.image}" style="border-radius: 15px;">
+            </div>`;
+        } else {
+            let msg = document.getElementById("colection-msg")
+            msg.innerHTML = `<h2 class="cinzel-title" id="colection-msg">Sua Coleção está vazia</h2>
+        </div>`
+        }
+    } else if(!api_games.ok){
+        let msg = document.getElementById("colection-msg")
+            msg.innerHTML = `<h2 class="cinzel-title" id="colection-msg">Erro ao retornar coleção</h2>
+        </div>`
+    }
+});
