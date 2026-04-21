@@ -23,6 +23,7 @@ function removeToken() {
 
 function logout() {
     removeToken();
+    localStorage.clear();
     alert('Logout realizado com sucesso!');
     setTimeout(() => {
         window.location.href = 'login.html';

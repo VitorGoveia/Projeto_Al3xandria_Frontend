@@ -87,13 +87,15 @@ async function viewDetails(slug_name){
         let response_realName = await api_realname.json()
         let description = response_realName.description || 'Unavailable';
         let img = response_realName.imagem || 'Unavailable';
-        let meta_score = response_realName.meta_score || 'Unavailable';
+        let meta_score = response_realName.meta_score || 0;
         let name = response_realName.nome || 'Unavailable';
         let rawg_id = response_realName.rawg_id;
         let website = response_realName.website || 'Unavailable';
         let released_date = response_realName.release_date || 'Unavailable';
         let url_meta_score = response_realName.url_meta_score || 'Unavailable';
-        
+        let slug_name = response_realName.slug_name;
+
+        localStorage.setItem("slug_name", slug_name);
         localStorage.setItem('description', description);
         localStorage.setItem('img', img);
         localStorage.setItem('meta_score', meta_score);
