@@ -234,3 +234,13 @@ body {
         grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
     }
 }
+
+
+#user_name {
+    color: #a89877;
+    font-size: 1.8rem; 
+    font-family: 'Cinzel', serif;
+    font-weight: 600; 
+    margin: 0; 
+    letter-spacing: 1px; 
+}

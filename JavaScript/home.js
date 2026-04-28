@@ -49,9 +49,36 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 
+async function name() {
+    const user_id = localStorage.getItem("user_id");
+    let url_user = `${API_BASE_URL}/user/${user_id}`;
 
+    let api_name = await fetch(url_user, {
+        method: "GET",
+        headers: {
+               "Content-Type": "application/json"
+            }
+    });
+
+    if(api_name.ok){
+        let response_name = await api_name.json();
+        let name = response_name.Nome
+
+        if(!name || name == 'undefined'){
+            let name = 'Jogador';
+        }
+
+        return name
+    }
+    
+}
 
 document.addEventListener('DOMContentLoaded', async function () {
+    let userName = await name()
+    console.log(userName)
+    const nome_user = document.getElementById("user_name");
+    nome_user.innerHTML = `Olá, ${userName}!`;
+
     const conteiner_game = document.getElementById("game_section");
     const user_id = getUserId();
     let get_games_url = `${API_BASE_URL}/usergame/${user_id}`;
