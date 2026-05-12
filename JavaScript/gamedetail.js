@@ -40,7 +40,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 <div class="game-footer">
                     <a href="${website}" target="_blank" class="btn-website">Visitar Site Oficial</a>
                     <a onclick="salvar_jogo()" class="btn-website">Adicionar à Biblioteca</a>
-                    <a onclick="editarJogo()" class="btn-website">Editar Jogo</a>
+                    <a href="#" onclick="editarJogo()" class="btn-website">Editar Jogo</a>
                 </div>
             </div>
         </div>
@@ -125,48 +125,6 @@ async function salvarAvaliacao() {
     }
 }
 
-async function editarJogo() {
-    const rawgId = localStorage.getItem("rawg_id");
-    const descricaoAtual = localStorage.getItem("description");
-    const websiteAtual = localStorage.getItem("website");
-
-    const novaDescricao = prompt("Edite a descrição do jogo:", descricaoAtual);
-    if (novaDescricao === null) return;
-
-    const novoWebsite = prompt("Edite o website do jogo:", websiteAtual);
-    if (novoWebsite === null) return;
-
-    const body = {
-        description: novaDescricao,
-        website: novoWebsite
-    };
-
-    try {
-        const response = await fetch(`${URL_BASE}/game/${rawgId}`, {
-            method: "PUT",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify(body)
-        });
-
-        const data = await response.json();
-
-        if (response.ok) {
-            alert("Jogo atualizado com sucesso!");
-
-            // Atualiza localStorage
-            localStorage.setItem("description", data.jogo.description);
-            localStorage.setItem("website", data.jogo.website);
-
-            // Recarrega a página para mostrar os dados atualizados
-            location.reload();
-        } else {
-            alert(data.erro || "Erro ao atualizar o jogo.");
-        }
-
-    } catch (error) {
-        console.error("Erro ao atualizar jogo:", error);
-        alert("Erro de conexão com a API.");
-    }
+function editarJogo() {
+    window.location.href = "../VIEW/editgame.html";
 }

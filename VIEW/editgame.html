@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Editar Jogo - Al3xandria</title>
+    <link rel="shortcut icon" href="../Imagens/favicon.png" type="image/x-icon">
+    <link rel="stylesheet" href="../CSS/editgame.css">
+    <script src="../JavaScript/editgame.js" defer></script>
+</head>
+<body>
+
+    <main class="main-container">
+
+        <div class="site-logo">
+            <img src="../Imagens/logo.png" alt="Al3xandria">
+            <div class="logo-sub">Biblioteca de Jogos</div>
+        </div>
+
+        <section class="form-container">
+            <h2>Editar Jogo</h2>
+
+            <label for="nome">Nome</label>
+            <input type="text" id="nome" readonly>
+
+            <label for="description">Descrição</label>
+            <textarea id="description" rows="8"></textarea>
+
+            <label for="website">Website</label>
+            <input type="url" id="website">
+
+            <div class="buttons">
+                <button class="btn-primary" onclick="salvarEdicao()">
+                    Salvar Alterações
+                </button>
+
+                <button class="btn-secondary" onclick="voltar()">
+                    ← Cancelar
+                </button>
+            </div>
+        </section>
+
+    </main>
+
+</body>
+</html>
