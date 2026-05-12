@@ -167,3 +167,10 @@ dialog::backdrop {
 .stars label:hover ~ label { color: #f1c40f; }
 
 .modal-actions { display: flex; justify-content: space-around; margin-top: 20px; }
+
+.game-footer {
+    margin-top: 30px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}

@@ -1,11 +1,11 @@
 const URL_BASE = 'http://127.0.0.1:5001'
 const modal = document.getElementById('modal-avaliacao');
 
-function come_back(){
+function come_back() {
     window.location.href = "../VIEW/searchgames.html";
 }
 
-document.addEventListener('DOMContentLoaded', () =>{
+document.addEventListener('DOMContentLoaded', () => {
     const description = localStorage.getItem("description");
     const name = localStorage.getItem("name");
     const img = localStorage.getItem("img");
@@ -17,7 +17,7 @@ document.addEventListener('DOMContentLoaded', () =>{
 
     let name_tratado = name.charAt(0).toUpperCase() + name.slice(1).toLowerCase();
     let game_container = document.getElementById("game-container");
-    
+
     game_container.innerHTML = `
         <div class="game-card">
             <div class="game-header">
@@ -40,6 +40,7 @@ document.addEventListener('DOMContentLoaded', () =>{
                 <div class="game-footer">
                     <a href="${website}" target="_blank" class="btn-website">Visitar Site Oficial</a>
                     <a onclick="salvar_jogo()" class="btn-website">Adicionar à Biblioteca</a>
+                    <a onclick="editarJogo()" class="btn-website">Editar Jogo</a>
                 </div>
             </div>
         </div>
@@ -47,9 +48,9 @@ document.addEventListener('DOMContentLoaded', () =>{
 });
 
 
-async function salvar_jogo(){
+async function salvar_jogo() {
     modal.showModal();
-     
+
 
 }
 
@@ -64,7 +65,7 @@ async function salvarAvaliacao() {
     const user_id = localStorage.getItem("user_id");
     const register_url = `${URL_BASE}/usergame`;
 
-    
+
     if (nota) {
         console.log("Jogo avaliado com nota:", nota);
         const game_id = localStorage.getItem("rawg_id");
@@ -103,13 +104,13 @@ async function salvarAvaliacao() {
         let register_api = await fetch(register_url, {
             method: "POST",
             headers: {
-               "Content-Type": "application/json"
+                "Content-Type": "application/json"
             },
             body: JSON.stringify(reister_body)
 
         });
 
-        if(register_api.ok){
+        if (register_api.ok) {
             let register_response = await register_api;
             console.log(register_response)
             fecharModal();
@@ -118,8 +119,54 @@ async function salvarAvaliacao() {
             alert("Ops, algo deu errado")
         }
 
-       
+
     } else {
         alert("Por favor, selecione uma nota.");
+    }
+}
+
+async function editarJogo() {
+    const rawgId = localStorage.getItem("rawg_id");
+    const descricaoAtual = localStorage.getItem("description");
+    const websiteAtual = localStorage.getItem("website");
+
+    const novaDescricao = prompt("Edite a descrição do jogo:", descricaoAtual);
+    if (novaDescricao === null) return;
+
+    const novoWebsite = prompt("Edite o website do jogo:", websiteAtual);
+    if (novoWebsite === null) return;
+
+    const body = {
+        description: novaDescricao,
+        website: novoWebsite
+    };
+
+    try {
+        const response = await fetch(`${URL_BASE}/game/${rawgId}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(body)
+        });
+
+        const data = await response.json();
+
+        if (response.ok) {
+            alert("Jogo atualizado com sucesso!");
+
+            // Atualiza localStorage
+            localStorage.setItem("description", data.jogo.description);
+            localStorage.setItem("website", data.jogo.website);
+
+            // Recarrega a página para mostrar os dados atualizados
+            location.reload();
+        } else {
+            alert(data.erro || "Erro ao atualizar o jogo.");
+        }
+
+    } catch (error) {
+        console.error("Erro ao atualizar jogo:", error);
+        alert("Erro de conexão com a API.");
     }
 }
