@@ -49,11 +49,50 @@ function irParaDetalhes(game) {
 }
 
 // =============================================
+// Excluir Jogo da Coleção
+// =============================================
+
+async function deletarJogo(game_id) {
+    if (!confirm("Tem certeza que deseja excluir este jogo da sua coleção?")) {
+        return; 
+    }
+
+    const user_id = getUserId();
+    
+    // Verifique se a sua API usa exatamente esta URL para deletar
+    let url_delete = `${API_BASE_URL}/usergame/${user_id}/${game_id}`;
+
+    try {
+        let response = await fetch(url_delete, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
+
+        if (response.ok) {
+            alert("Jogo excluído com sucesso!");
+            
+            // ATUALIZAÇÃO: Em vez de tentar redirecionar, forçamos a página atual a recarregar
+            window.location.href = "home.html"
+            
+        } else {
+            // Se cair aqui, a API recusou a exclusão (ex: ID errado ou rota incorreta)
+            alert("Erro na exclusão. A API retornou status: " + response.status);
+            console.error("Erro da API:", await response.text());
+        }
+        
+    } catch (error) {
+        console.error("Erro na requisição de exclusão:", error);
+        alert("Erro de conexão ao tentar excluir. Verifique se o servidor Flask/Python está rodando.");
+    }
+}
+
+// =============================================
 // Inicialização
 // =============================================
 
 document.addEventListener('DOMContentLoaded', function () {
-
     // Protege a página: se não estiver logado, volta para o login
     if (!getToken() || !getUserId()) {
         alert('Você precisa fazer login primeiro.');
@@ -92,9 +131,11 @@ async function name() {
 
 document.addEventListener('DOMContentLoaded', async function () {
     let userName = await name();
-    console.log(userName);
     const nome_user = document.getElementById("user_name");
-    nome_user.innerHTML = `Olá, ${userName}!`;
+    
+    if (nome_user) {
+        nome_user.innerHTML = `Olá, ${userName}!`;
+    }
 
     const conteiner_game = document.getElementById("game_section");
     const user_id = getUserId();
@@ -109,14 +150,18 @@ document.addEventListener('DOMContentLoaded', async function () {
 
     if (api_games.ok) {
         let games_response = await api_games.json();
-        console.log(games_response);
 
         if (games_response.length > 0) {
-            conteiner_game.innerHTML = "";
+            if (conteiner_game) conteiner_game.innerHTML = "";
 
-            const game_array = games_response.map(game =>
+            // Salvamos a lista de jogos globalmente para acessar no clique
+            window.jogosCarregados = games_response;
+
+            // Renderizando os cards e adicionando o botão de excluir
+            // O event.stopPropagation() impede que clicar em Excluir ative o irParaDetalhes
+            const game_array = games_response.map((game, index) =>
                 `
-                <div class="game-card" onclick='irParaDetalhes(${JSON.stringify(game)})' style="cursor: pointer;">
+                <div class="game-card" onclick="irParaDetalhes(window.jogosCarregados[${index}])" style="cursor: pointer; position: relative;">
                     <div class="game-cover" style="background-image: url('${game.image}')"></div>
                     <div class="game-info">
                         <h3>${game.name}</h3>
@@ -124,33 +169,39 @@ document.addEventListener('DOMContentLoaded', async function () {
                         <p class="game-meta-score">Meta Score: <span class="game-value">${game.meta_score}</span></p>
                         <p class="game-meta-score">Sua Avaliação: <span class="game-value">${game.user_rate}/5</span></p>
                         <p class="game-genre">${game.description}</p>
+                        
+                        <button onclick="event.stopPropagation(); deletarJogo('${game.id || game.rawg_id}')" 
+                                style="margin-top: 10px; background-color: #dc3545; color: white; border: none; padding: 8px 12px; border-radius: 5px; cursor: pointer; z-index: 10;">
+                            Excluir Jogo
+                        </button>
                     </div>
                 </div>
             `);
 
-            conteiner_game.innerHTML = game_array.join('');
+            if (conteiner_game) conteiner_game.innerHTML = game_array.join('');
 
             const destaque = document.getElementById("week-main");
-            const indiceAleatorio = Math.floor(Math.random() * games_response.length);
-            const jogoSorteado = games_response[indiceAleatorio];
-            destaque.innerHTML = `
-                <div class="featured-text">
-                    <h1 class="cinzel-title">${jogoSorteado.name}</h1>
-                    <span class="game-genre">${jogoSorteado.description}</span>
-                    <p>Meta Score: ${jogoSorteado.meta_score}</p>
-                    <p>Sua Avaliação: ${jogoSorteado.user_rate}/5</p>
-                </div>
-                <div class="featured-image-container">
-                    <img class="game-cover" src="${jogoSorteado.image}" style="border-radius: 15px;">
-                </div>`;
-
+            if (destaque) {
+                const indiceAleatorio = Math.floor(Math.random() * games_response.length);
+                const jogoSorteado = games_response[indiceAleatorio];
+                destaque.innerHTML = `
+                    <div class="featured-text">
+                        <h1 class="cinzel-title">${jogoSorteado.name}</h1>
+                        <span class="game-genre">${jogoSorteado.description}</span>
+                        <p>Meta Score: ${jogoSorteado.meta_score}</p>
+                        <p>Sua Avaliação: ${jogoSorteado.user_rate}/5</p>
+                    </div>
+                    <div class="featured-image-container">
+                        <img class="game-cover" src="${jogoSorteado.image}" style="border-radius: 15px;">
+                    </div>`;
+            }
         } else {
             let msg = document.getElementById("colection-msg");
-            msg.innerHTML = `<h2 class="cinzel-title" id="colection-msg">Sua Coleção está vazia</h2>`;
+            if (msg) msg.innerHTML = `<h2 class="cinzel-title" id="colection-msg">Sua Coleção está vazia</h2>`;
         }
 
     } else {
         let msg = document.getElementById("colection-msg");
-        msg.innerHTML = `<h2 class="cinzel-title" id="colection-msg">Erro ao retornar coleção</h2>`;
+        if (msg) msg.innerHTML = `<h2 class="cinzel-title" id="colection-msg">Erro ao retornar coleção</h2>`;
     }
 });

@@ -284,7 +284,7 @@ async function excluirJogo() {
             fecharModalDelete();
 
             window.location.href =
-                "../VIEW/searchgames.html";
+                "../VIEW/home.html";
 
         } else {
 
