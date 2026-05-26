@@ -126,5 +126,9 @@ async function salvarAvaliacao() {
 }
 
 function editarJogo() {
+
+    // Apenas abre a tela de edição
+    // Os dados já estão salvos no localStorage
+
     window.location.href = "../VIEW/editgame.html";
 }
