@@ -27,7 +27,26 @@
             <button onclick="salvarAvaliacao()" class="btn-confirmar">Salvar</button>
         </div>
     </div>
-</dialog>
+    </dialog>
+    <dialog id="modal-delete">
+    <div class="modal-content">
+        <h3>Excluir Jogo</h3>
+
+        <p>
+            Tem certeza que deseja excluir este jogo?
+        </p>
+
+        <div class="modal-actions">
+            <button onclick="fecharModalDelete()" class="btn-cancelar">
+                Cancelar
+            </button>
+
+            <button onclick="excluirJogo()" class="btn-delete-confirm">
+                Excluir
+            </button>
+        </div>
+    </div>
+    </dialog>
     <div id="come-back">
         <buttom id="buttom-come-back" onclick="come_back()">← Voltar</buttom>
     </div>
