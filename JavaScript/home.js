@@ -89,6 +89,40 @@ async function deletarJogo(game_id) {
 }
 
 // =============================================
+// Deletar Conta (Desativação)
+// =============================================
+
+async function deletarConta() {
+    const confirmacao = confirm("Tem certeza que deseja excluir sua conta?\n\nEsta ação irá desativar seu acesso permanentemente.");
+    if (!confirmacao) return;
+
+    const user_id = getUserId();
+    const url_delete = `${API_BASE_URL}/user/${user_id}`;
+
+    try {
+        const response = await fetch(url_delete, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json"
+            }
+        });
+
+        if (response.ok) {
+            alert("Conta deletada com sucesso. Até logo!");
+            removeToken();
+            localStorage.clear();
+            window.location.href = "login.html";
+        } else {
+            const erro = await response.json();
+            alert("Erro ao desativar conta: " + (erro.erro || response.status));
+        }
+    } catch (error) {
+        console.error("Erro ao deletar conta:", error);
+        alert("Erro de conexão ao tentar desativar a conta.");
+    }
+}
+
+// =============================================
 // Inicialização
 // =============================================
 

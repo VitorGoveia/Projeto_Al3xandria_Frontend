@@ -244,3 +244,24 @@ body {
     margin: 0; 
     letter-spacing: 1px; 
 }
+.btn-delete-account {
+    background: transparent;
+    border: 1px solid rgba(180, 60, 60, 0.25);
+    color: rgba(180, 80, 80, 0.5);
+    height: 30px;
+    padding: 0 10px;
+    border-radius: var(--radius);
+    cursor: pointer;
+    font-size: 13px;
+    line-height: 1;
+    transition: border-color 0.3s, color 0.3s, background 0.3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn-delete-account:hover {
+    border-color: rgba(220, 53, 69, 0.7);
+    color: #dc3545;
+    background: rgba(220, 53, 69, 0.08);
+}

@@ -212,7 +212,8 @@ async function salvarAvaliacao() {
 
             alert(`Jogo adicionado com nota ${nota}!`);
 
-            location.reload();
+            window.location.href =
+                "../VIEW/home.html";
 
         } else {
 
